@@ -1,6 +1,5 @@
 
 from django.db import models
-from django.db.models.fields.related import ForeignKey
 
 from guitarradar.utils.models import BaseModel
 
@@ -58,6 +57,7 @@ class Guitar(BaseModel):
     neck_shape = models.CharField(max_length=2, choices=NeckShapes.choices)
     strings = models.IntegerField(choices=Strings.choices, null=False)
     frets_quantity = models.CharField(Choices=Frets.choices)
+    scale_length = models.FloatField(null=False)
 
     def __str__(self) -> str:
         return f'{self.brand} {self.model_name}' 

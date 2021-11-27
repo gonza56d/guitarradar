@@ -39,7 +39,9 @@ DJANGO_APPS = [
     'django.contrib.staticfiles',
 ]
 
-PROJECT_APPS = []
+PROJECT_APPS = [
+    'guitarradar.guitars.apps.GuitarsConfig'
+]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 
