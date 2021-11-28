@@ -6,4 +6,8 @@ from guitarradar.utils.models import BaseModel
 
 class Brand(BaseModel):
     
-    pass
+    name = models.CharField(max_length=300)
+    url = models.CharField(max_length=5000)
+
+    def __str__(self) -> str:
+        return self.name

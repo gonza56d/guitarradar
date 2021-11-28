@@ -14,7 +14,7 @@ import environ
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 ROOT_DIR = environ.Path(__file__) - 3
-APPS_DIR = ROOT_DIR.path('calisto')
+APPS_DIR = ROOT_DIR.path('guitarradar')
 
 env = environ.Env()
 environ.Env.read_env()
@@ -112,4 +112,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
+STATIC_ROOT = str(ROOT_DIR('staticfiles'))
+
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    str(APPS_DIR.path('static')),
+]
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

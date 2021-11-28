@@ -36,7 +36,7 @@ class Guitar(BaseModel):
         NINE = 9
         TWELVE = 12
     
-    class Frets(models.IntegerChoices):
+    class FretsQuantities(models.TextChoices):
         NINETEEN = 'NT', '19'
         TWENTY = 'TW', '20'
         TWENTY_ONE = 'TO', '21'
@@ -44,11 +44,21 @@ class Guitar(BaseModel):
         TWENTY_FOUR = 'TF', '24'
         OTHER = 'OT', 'Other'
 
+    class FretsTypes(models.TextChoices):
+        MEDIUM_JUMBO = 'RMJ', 'Medium Jumbo'
+        JUMBO = 'RJJ', 'Jumbo'
+        EXTRA_JUMBO = 'RXJ', 'Extra Jumbo'
+        STAINLESS_MEDIUM_JUMBO = 'SMJ', 'Stainless Medium Jumbo'
+        STAINLESS_JUMBO = 'SJJ', 'Stainless Jumbo'
+        STAINLESS_EXTRA_JUMBO = 'SXJ', 'Stainless Extra Jumbo'
+
     brand = models.ForeignKey('guitars.Brand', on_delete=models.PROTECT, null=False)
     model_name = models.CharField(max_length=300)
-    bridge_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True)
-    middle_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True)
-    neck_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True)
+    url = models.CharField(max_length=5000)
+    origin = models.CharField(max_length=300)
+    bridge_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True, related_name='bridge_pickup')
+    middle_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True, related_name='middle_pickup')
+    neck_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True, related_name='neck_pickup')
     bridge = models.ForeignKey('guitars.Bridge', on_delete=models.PROTECT, null=False)
     body_material = models.CharField(max_length=2, choices=Materials.choices)
     neck_material = models.CharField(max_length=2, choices=Materials.choices)
@@ -56,8 +66,9 @@ class Guitar(BaseModel):
     fingerboard_radius = models.IntegerField(null=False)
     neck_shape = models.CharField(max_length=2, choices=NeckShapes.choices)
     strings = models.IntegerField(choices=Strings.choices, null=False)
-    frets_quantity = models.CharField(Choices=Frets.choices)
+    frets_quantity = models.CharField(max_length=2, choices=FretsQuantities.choices)
+    frets_type = models.CharField(max_length=3, choices=FretsTypes.choices)
     scale_length = models.FloatField(null=False)
 
     def __str__(self) -> str:
-        return f'{self.brand} {self.model_name}' 
+        return f'{self.brand} {self.model_name}'
