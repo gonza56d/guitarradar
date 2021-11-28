@@ -1,6 +1,7 @@
 
 from django.db import models
 
+from guitarradar.utils.fields import DescriptiveCharField
 from guitarradar.utils.models import BaseModel
 
 
@@ -60,10 +61,10 @@ class Guitar(BaseModel):
     middle_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True, related_name='middle_pickup')
     neck_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True, related_name='neck_pickup')
     bridge = models.ForeignKey('guitars.Bridge', on_delete=models.PROTECT, null=False)
-    body_material = models.CharField(max_length=2, choices=Materials.choices)
-    neck_material = models.CharField(max_length=2, choices=Materials.choices)
-    fingerboard_material = models.CharField(max_length=2, choices=Materials.choices)
-    fingerboard_radius = models.IntegerField(null=False)
+    body_material = DescriptiveCharField(max_length=2, choices=Materials.choices)
+    neck_material = DescriptiveCharField(max_length=2, choices=Materials.choices)
+    fingerboard_material = DescriptiveCharField(max_length=2, choices=Materials.choices)
+    fingerboard_radius = models.CharField(max_length=5)
     neck_shape = models.CharField(max_length=2, choices=NeckShapes.choices)
     strings = models.IntegerField(choices=Strings.choices, null=False)
     frets_quantity = models.CharField(max_length=2, choices=FretsQuantities.choices)
