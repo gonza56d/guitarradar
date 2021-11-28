@@ -11,5 +11,8 @@ class Pickup(BaseModel):
     origin = models.CharField(max_length=300)
     url = models.CharField(max_length=5000)
 
+    class Meta:
+        unique_together = ['brand', 'model_name']
+
     def __str__(self) -> str:
         return f'{self.brand} {self.model_name}'

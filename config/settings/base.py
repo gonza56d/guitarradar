@@ -40,7 +40,8 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
-    'guitarradar.guitars.apps.GuitarsConfig'
+    'guitarradar.guitars.apps.GuitarsConfig',
+    'guitarradar.index.apps.IndexConfig',
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS

@@ -1,0 +1,26 @@
+{% load static %}
+{% load i18n %}
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="{% static 'css/libs/bootstrap.min.css' %}" rel="stylesheet">
+    <title>GuitarRadar | {% block title %}{% translate 'Index' %}{% endblock %}</title>
+</head>
+
+<body>
+
+    <div class="container-fluid">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="{% static 'js/libs/jquery.min.js' %}"></script>
+    <script src="{% static 'js/libs/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/libs/fontawesome.min.js' %}"></script>
+
+</body>
+
+</html>

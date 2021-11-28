@@ -70,5 +70,14 @@ class Guitar(BaseModel):
     frets_type = models.CharField(max_length=3, choices=FretsTypes.choices)
     scale_length = models.FloatField(null=False)
 
+    class Meta:
+        unique_together = ['brand', 'model_name']
+
     def __str__(self) -> str:
         return f'{self.brand} {self.model_name}'
+
+
+class GuitarPicture(BaseModel):
+
+    guitar = models.ForeignKey('guitars.Guitar', on_delete=models.CASCADE, related_name='guitar_picture')
+    picture = models.ImageField(upload_to='guitarradar/guitars/pictures')
