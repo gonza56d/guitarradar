@@ -53,6 +53,12 @@ class Guitar(BaseModel):
         STAINLESS_JUMBO = 'SJJ', 'Stainless Jumbo'
         STAINLESS_EXTRA_JUMBO = 'SXJ', 'Stainless Extra Jumbo'
 
+    class Constructions(models.TextChoices):
+        BOLT_ON = 'BO', 'Bolt-on'
+        SET_NECK = 'SN', 'Set neck'
+        NECK_THRU = 'NT', 'Neck-thru'
+        SET_THRU = 'ST', 'Set-thru'
+
     brand = models.ForeignKey('guitars.Brand', on_delete=models.PROTECT, null=False)
     model_name = models.CharField(max_length=300)
     url = models.CharField(max_length=5000)
@@ -63,6 +69,7 @@ class Guitar(BaseModel):
     bridge = models.ForeignKey('guitars.Bridge', on_delete=models.PROTECT, null=False)
     body_material = DescriptiveCharField(max_length=2, choices=Materials.choices)
     neck_material = DescriptiveCharField(max_length=2, choices=Materials.choices)
+    construction = models.CharField(max_length=2, choices=Constructions.choices)
     fingerboard_material = DescriptiveCharField(max_length=2, choices=Materials.choices)
     fingerboard_radius = models.CharField(max_length=5)
     neck_shape = models.CharField(max_length=2, choices=NeckShapes.choices)
