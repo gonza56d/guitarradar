@@ -13,6 +13,32 @@
 
 <body>
 
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <a class="navbar-brand" href="{% url 'index:main' %}">
+                        Caronte
+                    </a>
+                </div>
+
+                <div class="col-6">
+                    {% if user.is_authenticated %}
+
+                    {% include 'index/navbar/authenticated.html' %}
+
+                    {% else %}
+
+                    {% include 'index/navbar/anonymous.html' %}
+
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+    </header>
+
     <div class="container-fluid">
         {% block content %}{% endblock %}
     </div>
