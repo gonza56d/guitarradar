@@ -39,7 +39,7 @@ def logout(request: HttpRequest) -> HttpResponse:
     return redirect('index:main')
 
 
-def sign_up(request: HttpRequest) -> HttpResponse:
+def signup(request: HttpRequest) -> HttpResponse:
     form = SignupForm(data=request.POST, prefix='signup')
     if form.is_valid():
         signed_up = services.sign_up(
