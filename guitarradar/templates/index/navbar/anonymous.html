@@ -1,7 +1,8 @@
 {% load i18n %}
 
 
-<form class="row">
+<form class="row" action="{% url 'users:signup' %}" method="POST">
+    {% csrf_token %}
     {% for field in request.login_form %}
     <div class="col-5">
         {{ field }}
