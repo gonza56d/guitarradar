@@ -2,12 +2,11 @@
 
 
 <form class="row">
+    {% for field in request.login_form %}
     <div class="col-5">
-        <input type="text" class="form-control" placeholder="{% translate 'Username' %}">
+        {{ field }}
     </div>
-    <div class="col-5">
-        <input type="password" class="form-control" placeholder="{% translate 'Password' %}">
-    </div>
+    {% endfor %}
     <div class="col-2">
         <button class="btn btn-success btn-block">
             <i class="fas fa-sign-in-alt"></i>

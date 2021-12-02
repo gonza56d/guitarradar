@@ -46,7 +46,7 @@ PROJECT_APPS = [
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
 
-MIDDLEWARE = [
+DJANGO_MIDDLEWARES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,6 +55,12 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+PROJECT_MIDDLEWARES = [
+    'guitarradar.utils.middlewares.LoginFormMiddleware'
+]
+
+MIDDLEWARE = DJANGO_MIDDLEWARES + PROJECT_MIDDLEWARES
 
 ROOT_URLCONF = 'config.urls'
 
