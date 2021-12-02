@@ -58,7 +58,7 @@ DJANGO_MIDDLEWARES = [
 ]
 
 PROJECT_MIDDLEWARES = [
-    'guitarradar.utils.middlewares.LoginFormMiddleware'
+    'guitarradar.utils.middlewares.AuthFormsMiddleware'
 ]
 
 MIDDLEWARE = DJANGO_MIDDLEWARES + PROJECT_MIDDLEWARES
