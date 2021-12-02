@@ -9,13 +9,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="{% static 'css/libs/bootstrap.min.css' %}" rel="stylesheet">
     <title>GuitarRadar | {% block title %}{% translate 'Index' %}{% endblock %}</title>
-    <link rel="icon" href="{% static 'assets/a.png' %}">
+    <link rel="icon" href="{% static 'assets/logo.jpg' %}">
 </head>
 
 <body>
 
     <header class="navbar navbar-expand-md navbar-dark bg-dark sticky-top bd-navbar">
-        <div class="container">
+        <nav class="container-xxl flex-wrap flex-md-nowrap" aria-label="Main navigation">
             <div class="row col-12">
                 <div class="col-12 col-md-6">
                     <a class="navbar-brand my-auto" href="{% url 'index:main' %}">
@@ -26,17 +26,17 @@
                 <div class="col-12 col-md-6 my-auto">
                     {% if user.is_authenticated %}
 
-                    {% include 'index/navbar/authenticated.html' %}
+                    {% include 'navbar/authenticated.html' %}
 
                     {% else %}
 
-                    {% include 'index/navbar/anonymous.html' %}
+                    {% include 'navbar/anonymous.html' %}
 
                     {% endif %}
                 </div>
 
             </div>
-        </div>
+        </nav>
 
     </header>
 

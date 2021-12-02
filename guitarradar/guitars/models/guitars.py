@@ -3,9 +3,10 @@ from django.db import models
 
 from guitarradar.utils.fields import DescriptiveCharField
 from guitarradar.utils.models import BaseModel
+from .base import GuitarBaseModel
 
 
-class Guitar(BaseModel):
+class Guitar(GuitarBaseModel):
 
     class NeckShapes(models.TextChoices):
         CS = 'CS', 'C'
@@ -59,11 +60,6 @@ class Guitar(BaseModel):
         NECK_THRU = 'NT', 'Neck-thru'
         SET_THRU = 'ST', 'Set-thru'
 
-    approved = models.BooleanField(default=False, null=False, blank=True)
-    brand = models.ForeignKey('guitars.Brand', on_delete=models.PROTECT, null=False)
-    model_name = models.CharField(max_length=300)
-    url = models.CharField(max_length=5000)
-    origin = models.CharField(max_length=300)
     bridge_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True, related_name='bridge_pickup')
     middle_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True, related_name='middle_pickup')
     neck_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True, related_name='neck_pickup')
