@@ -8,7 +8,7 @@ from django.utils.translation import gettext as _
 
 from guitarradar.utils import constants
 from .forms import LoginForm, SignupForm
-import services
+from . import services
 
 
 logger = logging.getLogger(__name__)
