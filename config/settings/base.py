@@ -42,6 +42,7 @@ DJANGO_APPS = [
 PROJECT_APPS = [
     'guitarradar.guitars.apps.GuitarsConfig',
     'guitarradar.index.apps.IndexConfig',
+    'guitarradar.users.apps.UsersConfig'
 ]
 
 INSTALLED_APPS = DJANGO_APPS + PROJECT_APPS
@@ -128,3 +129,6 @@ STATICFILES_DIRS = [
 ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+
+# Custom user
+AUTH_USER_MODEL = 'users.User'
