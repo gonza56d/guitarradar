@@ -1,0 +1,31 @@
+{% extends 'main.html' %}
+
+{% load static %}
+{% load i18n %}
+
+{% block content %}
+
+<form>
+
+    <div class="row">
+        <div class="col-12 col-md-4 offset-md-4">
+            <div class="alert alert-primary">
+                <form id="form_users_signup" method="POST" action="{% url 'users:signup' %}">
+                    {% csrf_token %}
+                    <h3 class="text-center">{% translate 'Sign up account' %}</h3>
+                    {% for field in signup_form %}
+                    <div class="col-12 my-3">
+                        {{ field }}
+                    </div>
+                    {% endfor %}
+                    <div class="col-12 mt-3 text-center">
+                        <button class="btn btn-primary btn-block">{% translate 'Signup' %}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+{% endblock %}

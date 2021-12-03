@@ -14,8 +14,8 @@
         </button>
     </div>
     <div class="col-2 col-md-1 px-1">
-        <button type="button" class="btn btn-success btn-block" data-toggle="tooltip" data-placement="top" title="{% translate 'Sign up' %}">
+        <a href="{% url 'users:signup' %}" class="btn btn-success btn-block" data-toggle="tooltip" data-placement="top" title="{% translate 'Sign up' %}">
             <i class="fas fa-user-edit"></i>
-        </button>
+        </a>
     </div>
 </form>

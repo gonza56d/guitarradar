@@ -12,3 +12,4 @@ class SignupForm(forms.Form):
     username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': _('Username')}))
     email = forms.CharField(widget=forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Password')}))
+    re_password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control', 'placeholder': _('Repeat password')}))

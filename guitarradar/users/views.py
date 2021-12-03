@@ -3,8 +3,9 @@ import logging
 
 from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.utils.translation import gettext as _
+from django.views.generic import View
 
 from guitarradar.utils import constants
 from .forms import LoginForm, SignupForm
@@ -39,19 +40,25 @@ def logout(request: HttpRequest) -> HttpResponse:
     return redirect('index:main')
 
 
-def signup(request: HttpRequest) -> HttpResponse:
-    form = SignupForm(data=request.POST, prefix='signup')
-    if form.is_valid():
-        signed_up = services.sign_up(
-            username=form.cleaned_data.get('username'),
-            email=form.cleaned_data.get('email'),
-            password=form.cleaned_data.get('password')
-        )
-        if signed_up:
-            messages.success(request, _('You have successfully signed up!'))
+class Signup(View):
+
+    def get(self, request: HttpRequest) -> HttpResponse:
+        form = SignupForm(prefix='signup')
+        return render(request, 'users/signup.html', {'signup_form': form})
+
+    def post(self, request: HttpRequest) -> HttpResponse:
+        form = SignupForm(data=request.POST, prefix='signup')
+        if form.is_valid():
+            signed_up = services.sign_up(
+                username=form.cleaned_data.get('username'),
+                email=form.cleaned_data.get('email'),
+                password=form.cleaned_data.get('password')
+            )
+            if signed_up:
+                messages.success(request, _('You have successfully signed up!'))
+            else:
+                messages.warning(request, '#TODO')
         else:
-            messages.warning(request, '#TODO')
-    else:
-        logger.error(form.errors)
-        messages.error(request, _(constants.FORM_ERROR_MSG))
-    return redirect('index:main')
+            logger.error(form.errors)
+            messages.error(request, _(constants.FORM_ERROR_MSG))
+        return redirect('index:main')
