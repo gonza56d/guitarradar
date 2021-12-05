@@ -2,6 +2,7 @@
 from django.contrib import auth
 from django.http import HttpRequest
 
+from guitarradar.utils.exceptions import BusinessException
 from .models import User
 
 
@@ -21,5 +22,7 @@ def logout(request: HttpRequest) -> bool:
 
 
 def sign_up(username: str, email: str, password: str) -> bool:
+    if len(password) < 8:
+        raise BusinessException('Password must have at least 8 characters')
     user = User.objects.create_user(username=username, email=email, password=password)
     return True if user is not None else False

@@ -5,27 +5,27 @@
 
 {% block content %}
 
-<form>
 
-    <div class="row">
-        <div class="col-12 col-md-4 offset-md-4">
-            <div class="alert alert-primary">
-                <form id="form_users_signup" method="POST" action="{% url 'users:signup' %}">
-                    {% csrf_token %}
-                    <h3 class="text-center">{% translate 'Sign up account' %}</h3>
-                    {% for field in signup_form %}
-                    <div class="col-12 my-3">
-                        {{ field }}
-                    </div>
-                    {% endfor %}
-                    <div class="col-12 mt-3 text-center">
-                        <button class="btn btn-primary btn-block">{% translate 'Signup' %}</button>
-                    </div>
-                </form>
-            </div>
+<div class="row">
+    <div class="col-12 col-md-4 offset-md-4">
+        <div class="alert alert-primary">
+            <form id="form_users_signup" method="POST" action="{% url 'users:signup' %}">
+                {% csrf_token %}
+                <h3 class="text-center">{% translate 'Sign up account' %}</h3>
+                {% for field in signup_form %}
+                <div class="col-12 my-3">
+                    {{ field }}
+                </div>
+                {% endfor %}
+                <div id="label_password_length_users_signup" class="text-center" style="color:red; display:none;">{% translate 'Passwords must have at least 8 characters' %}</div>
+                <div id="label_passwords_users_signup" class="text-center" style="color:red; display:none;">{% translate 'Passwords do not match' %}</div>
+                <div class="col-12 mt-3 text-center">
+                    <button id="button_users_signup" class="btn btn-primary btn-block" disabled>{% translate 'Signup' %}</button>
+                </div>
+            </form>
         </div>
     </div>
+</div>
 
-</form>
 
 {% endblock %}

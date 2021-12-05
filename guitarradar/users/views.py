@@ -8,6 +8,7 @@ from django.utils.translation import gettext as _
 from django.views.generic import View
 
 from guitarradar.utils import constants
+from guitarradar.utils.exceptions import BusinessException
 from .forms import LoginForm, SignupForm
 from . import services
 
@@ -49,11 +50,15 @@ class Signup(View):
     def post(self, request: HttpRequest) -> HttpResponse:
         form = SignupForm(data=request.POST, prefix='signup')
         if form.is_valid():
-            signed_up = services.sign_up(
-                username=form.cleaned_data.get('username'),
-                email=form.cleaned_data.get('email'),
-                password=form.cleaned_data.get('password')
-            )
+            signed_up = False
+            try:
+                signed_up = services.sign_up(
+                    username=form.cleaned_data.get('username'),
+                    email=form.cleaned_data.get('email'),
+                    password=form.cleaned_data.get('password')
+                )
+            except BusinessException as e:
+                logger.error(str(e))
             if signed_up:
                 messages.success(request, _('You have successfully signed up!'))
             else:
