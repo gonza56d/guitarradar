@@ -50,19 +50,17 @@ class Signup(View):
     def post(self, request: HttpRequest) -> HttpResponse:
         form = SignupForm(data=request.POST, prefix='signup')
         if form.is_valid():
-            signed_up = False
             try:
-                signed_up = services.sign_up(
+                services.sign_up(
                     username=form.cleaned_data.get('username'),
                     email=form.cleaned_data.get('email'),
                     password=form.cleaned_data.get('password')
                 )
-            except BusinessException as e:
-                logger.error(str(e))
-            if signed_up:
                 messages.success(request, _('You have successfully signed up!'))
-            else:
-                messages.warning(request, '#TODO')
+                return redirect('index:main')
+            except BusinessException as e:
+                messages.error(request, _(str(e)))
+                return redirect('users:signup')
         else:
             logger.error(form.errors)
             messages.error(request, _(constants.FORM_ERROR_MSG))

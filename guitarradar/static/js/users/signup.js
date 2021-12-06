@@ -2,64 +2,85 @@
 let buttonUsersSignup = $('#button_users_signup');
 let labelPasswordsUsersSignup = $('#label_passwords_users_signup');
 let labelPasswordLengthUsersSignup = $('#label_password_length_users_signup');
+let labelUsernameLengthUsersSignup = $('#label_username_length_users_signup');
+let username = $('#id_signup-username');
+let email = $('#id_signup-email');
+let password = $('#id_signup-password');
+let rePassword = $('#id_signup-re_password');
 
 
-function checkPasswordLength() {
-    let password = $('#id_signup-password').val();
-    if (password.length < 8) {
-        labelPasswordLengthUsersSignup.attr('style', 'color:red;');
-        buttonUsersSignup.attr('disabled', 'disabled');
+function isPasswordLength() {
+    if (password.val().length >= 8) {
+        return true;
     } else {
-        labelPasswordLengthUsersSignup.attr('style', 'color:red; display:none;');
-        buttonUsersSignup.removeAttr('disabled');
+        return false;
     }
 }
 
 
-function checkForPasswordToMatch() {
-    let password = $('#id_signup-password').val();
-    let rePassword = $('#id_signup-re_password').val();
-    if (password === rePassword) {
-        labelPasswordsUsersSignup.attr('style', 'color:red; display:none;');
+function arePasswordsMatching() {
+    if (password.val() === rePassword.val()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+function areFieldsComplete() {
+    if (username.val() != "" && email.val() != "" && password.val() != "" && rePassword.val() != "") {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+function isUSernameLength() {
+    if (username.val().length >= 3) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+
+function checkStates() {
+    let fieldsComplete = areFieldsComplete();
+    let passwordsMatch = arePasswordsMatching();
+    let passwordsLength = isPasswordLength();
+    let usernameLength = isUSernameLength();
+
+    if (fieldsComplete && passwordsMatch && passwordsLength && usernameLength) {
         buttonUsersSignup.removeAttr('disabled');
+    } else {
+        buttonUsersSignup.attr('disabled', 'disabled');
+    }
+
+    if (passwordsMatch) {
+        labelPasswordsUsersSignup.attr('style', 'color:red; display:none;');
     } else {
         labelPasswordsUsersSignup.attr('style', 'color:red;');
-        buttonUsersSignup.attr('disabled', 'disabled');
     }
-}
 
-
-function checkForButtonState() {
-    let username = $('#id_signup-username').val();
-    let email = $('#id_signup-email').val();
-    let password = $('#id_signup-password').val();
-    let rePassword = $('#id_signup-re_password').val();
-
-    if (username != "" && email != "" && password != "" && rePassword != "" &&
-        password === rePassword) {
-        buttonUsersSignup.removeAttr('disabled');
+    if (passwordsLength) {
+        labelPasswordLengthUsersSignup.attr('style', 'color:red; display:none;');
     } else {
-        buttonUsersSignup.attr('disabled', 'disabled');
+        labelPasswordLengthUsersSignup.attr('style', 'color:red;');
+    }
+
+    if (usernameLength) {
+        labelUsernameLengthUsersSignup.attr('style', 'color:red; display:none;');
+    } else {
+        labelUsernameLengthUsersSignup.attr('style', 'color:red;');
     }
 }
 
 
-$('#id_signup-username').keyup(function(e) {
-    checkForButtonState();
-});
+$('#id_signup-username').keyup(function(e) { checkStates(); });
 
-$('#id_signup-email').keyup(function(e) {
-    checkForButtonState();
-});
+$('#id_signup-email').keyup(function(e) { checkStates(); });
 
-$('#id_signup-password').keyup(function(e) {
-    checkForButtonState();
-    checkForPasswordToMatch();
-    checkPasswordLength();
-});
+$('#id_signup-password').keyup(function(e) { checkStates(); });
 
-$('#id_signup-re_password').keyup(function(e) {
-    checkForButtonState();
-    checkForPasswordToMatch();
-    checkPasswordLength();
-});
+$('#id_signup-re_password').keyup(function(e) { checkStates(); });

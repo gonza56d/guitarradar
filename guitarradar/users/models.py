@@ -13,6 +13,8 @@ class User(AbstractUser, BaseModel):
         MASTER_ADMIN = 'MA', 'master admin'
         FOUNDER = 'FO', 'founder'
 
+    email = models.EmailField(unique=True)
+
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
     admin_level = models.CharField(max_length=2, choices=AdminLevels.choices, default='NA')

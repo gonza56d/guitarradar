@@ -1,5 +1,6 @@
 
 from django.contrib import auth
+from django.db.utils import IntegrityError
 from django.http import HttpRequest
 
 from guitarradar.utils.exceptions import BusinessException
@@ -22,7 +23,15 @@ def logout(request: HttpRequest) -> bool:
 
 
 def sign_up(username: str, email: str, password: str) -> bool:
-    if len(password) < 8:
-        raise BusinessException('Password must have at least 8 characters')
-    user = User.objects.create_user(username=username, email=email, password=password)
-    return True if user is not None else False
+    try:
+        if len(password) < 8:
+            raise BusinessException('Password must have at least 8 characters')
+        if len(username) < 3:
+            raise BusinessException('Username must have at least 3 characters')
+        user = User.objects.create_user(username=username, email=email, password=password)
+        return True if user is not None else False
+    except IntegrityError as e:
+        if 'username' in str(e):
+            raise BusinessException('Username already in use')
+        if 'email' in str(e):
+            raise BusinessException('Email already in use')
