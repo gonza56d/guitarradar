@@ -82,7 +82,7 @@ class Guitar(GuitarBaseModel):
         max_length=2, choices=Materials.choices
     )
     construction = models.CharField(
-        max_length=2, choices=Constructions.choices
+        max_length=2, choices=Constructions.choices, blank=False
     )
     fingerboard_material = DescriptiveCharField(
         max_length=2, choices=Materials.choices

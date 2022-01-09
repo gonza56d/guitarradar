@@ -46,7 +46,8 @@ def _insert_guitars(apps, schema_editor):
                     frets_type=data[15],
                     scale_length=data[16],
                     pricepoint_score=data[17],
-                    overall_score=data[18]
+                    overall_score=data[18],
+                    construction=data[19]
                 )
                 guitar.save()
             except IntegrityError:

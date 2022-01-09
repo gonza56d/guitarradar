@@ -61,7 +61,7 @@ class Migration(migrations.Migration):
                 ('url', models.CharField(max_length=5000)),
                 ('body_material', guitarradar.utils.fields.DescriptiveCharField(choices=[('AD', 'Alder'), ('AS', 'Ash'), ('MG', 'Mahogany'), ('EB', 'Ebony'), ('RW', 'Rosewood'), ('MP', 'Maple'), ('RM', 'Roasted Maple'), ('FM', 'Flamed Maple'), ('QM', 'Quilted Maple'), ('PO', 'Poplar'), ('BW', 'Basswood'), ('OT', 'Other')], max_length=2)),
                 ('neck_material', guitarradar.utils.fields.DescriptiveCharField(choices=[('AD', 'Alder'), ('AS', 'Ash'), ('MG', 'Mahogany'), ('EB', 'Ebony'), ('RW', 'Rosewood'), ('MP', 'Maple'), ('RM', 'Roasted Maple'), ('FM', 'Flamed Maple'), ('QM', 'Quilted Maple'), ('PO', 'Poplar'), ('BW', 'Basswood'), ('OT', 'Other')], max_length=2)),
-                ('construction', models.CharField(choices=[('BO', 'Bolt-on'), ('SN', 'Set neck'), ('NT', 'Neck-thru'), ('ST', 'Set-thru')], max_length=2)),
+                ('construction', models.CharField(blank=False, choices=[('BO', 'Bolt-on'), ('SN', 'Set neck'), ('NT', 'Neck-thru'), ('ST', 'Set-thru')], max_length=2)),
                 ('fingerboard_material', guitarradar.utils.fields.DescriptiveCharField(choices=[('AD', 'Alder'), ('AS', 'Ash'), ('MG', 'Mahogany'), ('EB', 'Ebony'), ('RW', 'Rosewood'), ('MP', 'Maple'), ('RM', 'Roasted Maple'), ('FM', 'Flamed Maple'), ('QM', 'Quilted Maple'), ('PO', 'Poplar'), ('BW', 'Basswood'), ('OT', 'Other')], max_length=2)),
                 ('fingerboard_radius', models.CharField(max_length=5)),
                 ('neck_shape', models.CharField(choices=[('CS', 'C'), ('CC', 'C Chunky'), ('DS', 'D'), ('VH', 'V Hard'), ('VS', 'V Soft'), ('AS', 'Asymmetrical'), ('US', 'U')], max_length=2)),
