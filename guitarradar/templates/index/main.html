@@ -18,8 +18,8 @@ Hello dude!
         <tbody>
             {% for guitar in guitars %}
             <tr>
-                <th scope="row">{{ guitar.brand }}</th>
-                <th scope="row">{{ guitar.model }}</th>
+                <th scope="row"><a href="{% url 'guitars:brand_detail' %}?brand={{ guitar.brand }}">{{ guitar.brand }}</a></th>
+                <th scope="row"><a href="{% url 'guitars:guitar_detail' %}?brand={{ guitar.brand}}&model_name={{ guitar.model_name }}">{{ guitar.model_name }}</a></th>
             </tr>
             {% endfor %}
         </tbody>

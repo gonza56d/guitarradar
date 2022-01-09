@@ -1,0 +1,90 @@
+{% extends 'main.html' %}
+
+{% load i18n %}
+{% load filters %}
+
+{% block content %}
+
+<table class="table table-striped table-dark">
+    <thead>
+        <tr>
+            <th scope="col" colspan="2">{% translate 'Guitar info' %}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">{% translate 'Brand' %}</th>
+            <th scope="row"><a href="{% url 'guitars:brand_detail' %}?brand={{ guitar.brand }}">{{ guitar.brand }}</a></th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Model' %}</th>
+            <th scope="row">{{ guitar.model_name }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Bridge pickup' %}</th>
+            <th scope="row">{{ guitar.bridge_pickup }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{{ guitar.middle_pickup }}</th>
+            <th scope="row">{% translate 'Middle pickup' %}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Neck pickup' %}</th>
+            <th scope="row">{{ guitar.neck_pickup }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Bridge' %}</th>
+            <th scope="row">{{ guitar.bridge }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Body material' %}</th>
+            <th scope="row">{{ guitar.body_material }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Neck material' %}</th>
+            <th scope="row">{{ guitar.neck_material }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Construction' %}</th>
+            <th scope="row">{{ guitar.construction }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Fingerboard material' %}</th>
+            <th scope="row">{{ guitar.fingerboard_material }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Fingerboard radius' %}</th>
+            <th scope="row">{{ guitar.fingerboard_radius }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Neck shape' %}</th>
+            <th scope="row">{{ guitar.neck_shape }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Strings' %}</th>
+            <th scope="row">{{ guitar.strings }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Frets quantity' %}</th>
+            <th scope="row">{{ guitar.frets_quantity }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Frets type' %}</th>
+            <th scope="row">{{ guitar.frets_type }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Scale length' %}</th>
+            <th scope="row">{{ guitar.scale_length }}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Pricepoint score' %}</th>
+            <th scope="row">{% for x in guitar.pricepoint_score|range %}<i class="fas fa-star"></i>{% endfor %}{% for x in guitar.pricepoint_score|range_til_five %}<i class="far fa-star"></i>{% endfor %}</th>
+        </tr>
+        <tr>
+            <th scope="row">{% translate 'Overall score' %} {{ guitar.overall_score}}</th>
+            <th scope="row">{% for x in guitar.overall_score|range %}<i class="fas fa-star"></i>{% endfor %}{% for x in guitar.overall_score|range_til_five %}<i class="far fa-star"></i>{% endfor %}</th>
+        </tr>
+    </tbody>
+</table>
+
+{% endblock %}
