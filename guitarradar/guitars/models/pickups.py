@@ -1,7 +1,8 @@
+from django.db.models import BooleanField
 
 from .base import GuitarBaseModel
 
 
 class Pickup(GuitarBaseModel):
 
-    pass
+    active = BooleanField(default=False)

@@ -1,7 +1,30 @@
 {% extends 'main.html' %}
 
+{% load i18n %}
+
 {% block content %}
 
 Hello dude!
+
+{% if user.is_authenticated %}
+
+    <table class="table table-striped table-dark">
+        <thead>
+            <tr>
+                <th scope="col">{% translate 'Brand' %}</th>
+                <th scope="col">{% translate 'Model' %}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for guitar in guitars %}
+            <tr>
+                <th scope="row">{{ guitar.brand }}</th>
+                <th scope="row">{{ guitar.model }}</th>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endif %}
 
 {% endblock %}

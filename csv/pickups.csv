@@ -1,6 +1,9 @@
-brand,model_name,origin,url
-DiMarzio,X2N,USA,https://www.dimarzio.com/pickups/high-power/x2n
-DiMarzio,Super Distortion,USA,https://www.dimarzio.com/pickups/high-power/super-distortion
-Seymour Duncan,JB,USA,https://www.seymourduncan.com/single-product/jb-model
-DiMarzio,The Tone Zone,USA,https://www.dimarzio.com/pickups/high-power/tone-zone
-DiMarzio,Air Norton,USA,https://www.dimarzio.com/pickups/medium-power/air-norton
+brand,model_name,origin,url,active
+DiMarzio,X2N,USA,https://www.dimarzio.com/pickups/high-power/x2n,False
+DiMarzio,Super Distortion,USA,https://www.dimarzio.com/pickups/high-power/super-distortion,False
+Seymour Duncan,JB,USA,https://www.seymourduncan.com/single-product/jb-model,False
+DiMarzio,The Tone Zone,USA,https://www.dimarzio.com/pickups/high-power/tone-zone,False
+DiMarzio,Air Norton,USA,https://www.dimarzio.com/pickups/medium-power/air-norton,False
+EMG,81,USA,https://www.emgpickups.com/guitar/humbucking/81.html,True
+EMG,85,USA,https://www.emgpickups.com/guitar/humbucking/85.html,True
+EMG,H2,USA,https://www.emgpickups.com/guitar/humbucking/h2.html,False

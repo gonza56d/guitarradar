@@ -1,4 +1,4 @@
-
+from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db import models
 
 from guitarradar.utils.fields import DescriptiveCharField
@@ -31,13 +31,6 @@ class Guitar(GuitarBaseModel):
         BASSWOOD = 'BW', 'Basswood'
         OTHER = 'OT', 'Other'
     
-    class Strings(models.IntegerChoices):
-        SIX = 6
-        SEVEN = 7
-        EIGHT = 8
-        NINE = 9
-        TWELVE = 12
-    
     class FretsQuantities(models.TextChoices):
         NINETEEN = 'NT', '19'
         TWENTY = 'TW', '20'
@@ -60,20 +53,56 @@ class Guitar(GuitarBaseModel):
         NECK_THRU = 'NT', 'Neck-thru'
         SET_THRU = 'ST', 'Set-thru'
 
-    bridge_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True, related_name='bridge_pickup')
-    middle_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True, related_name='middle_pickup')
-    neck_pickup = models.ForeignKey('guitars.Pickup', on_delete=models.SET_NULL, null=True, related_name='neck_pickup')
-    bridge = models.ForeignKey('guitars.Bridge', on_delete=models.PROTECT, null=False)
-    body_material = DescriptiveCharField(max_length=2, choices=Materials.choices)
-    neck_material = DescriptiveCharField(max_length=2, choices=Materials.choices)
-    construction = models.CharField(max_length=2, choices=Constructions.choices)
-    fingerboard_material = DescriptiveCharField(max_length=2, choices=Materials.choices)
+    bridge_pickup = models.ForeignKey(
+        'guitars.Pickup',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='bridge_pickup'
+    )
+    middle_pickup = models.ForeignKey(
+        'guitars.Pickup',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='middle_pickup'
+    )
+    neck_pickup = models.ForeignKey(
+        'guitars.Pickup',
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name='neck_pickup'
+    )
+    bridge = models.ForeignKey(
+        'guitars.Bridge',
+        on_delete=models.PROTECT, null=False
+    )
+    body_material = DescriptiveCharField(
+        max_length=2, choices=Materials.choices
+    )
+    neck_material = DescriptiveCharField(
+        max_length=2, choices=Materials.choices
+    )
+    construction = models.CharField(
+        max_length=2, choices=Constructions.choices
+    )
+    fingerboard_material = DescriptiveCharField(
+        max_length=2, choices=Materials.choices
+    )
     fingerboard_radius = models.CharField(max_length=5)
     neck_shape = models.CharField(max_length=2, choices=NeckShapes.choices)
-    strings = models.IntegerField(choices=Strings.choices, null=False)
-    frets_quantity = models.CharField(max_length=2, choices=FretsQuantities.choices)
+    strings = models.IntegerField(
+        validators=[MaxValueValidator(12), MinValueValidator(6)]
+    )
+    frets_quantity = models.CharField(
+        max_length=2, choices=FretsQuantities.choices
+    )
     frets_type = models.CharField(max_length=3, choices=FretsTypes.choices)
     scale_length = models.FloatField(null=False)
+    pricepoint_score = models.IntegerField(
+        validators=[MaxValueValidator(5), MinValueValidator(1)]
+    )
+    overall_score = models.IntegerField(
+        validators=[MaxValueValidator(5), MinValueValidator(1)]
+    )
 
     class Meta:
         unique_together = ['brand', 'model_name']
