@@ -7,8 +7,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(('guitarradar.index.urls', 'index'), namespace='index')),
     path(
-        'guitars/',
-        include(('guitarradar.guitars.urls', 'guitars'), namespace='guitars')
+        'content/',
+        include(('guitarradar.guitars.urls', 'guitars'), namespace='content')
     ),
     path(
         'users/',

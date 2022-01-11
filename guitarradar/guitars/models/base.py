@@ -17,7 +17,7 @@ class GuitarBaseModel(BaseModel):
     class Meta:
         abstract = True
         get_latest_by = 'created'
-        ordering = ['-created', '-modified']
+        ordering = ['brand', 'model_name']
         unique_together = ['brand', 'model_name']
 
     def __str__(self) -> str:

@@ -12,3 +12,8 @@ class Brand(BaseModel):
 
     def __str__(self) -> str:
         return str(self.name)
+
+    class Meta(BaseModel.Meta):
+        abstract = False
+        get_latest_by = 'created'
+        ordering = ['name', '-modified']

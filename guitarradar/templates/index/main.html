@@ -8,6 +8,24 @@ Hello dude!
 
 {% if user.is_authenticated %}
 
+    <div class="row mb-3">
+        <div class="col-8 col-md-2 offset-4 offset-md-10">
+            <div class="ml-auto dropdown">
+                <button class="btn btn-info dropdown-toggle" type="button"
+                        id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                    Submit
+                </button>
+                <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" href="{% url 'content:create_brand' %}">Brand</a></li>
+                    <li><a class="dropdown-item" href="{% url 'content:create_bridge' %}">Bridge</a></li>
+                    <li><a class="dropdown-item" href="{% url 'content:create_guitar' %}">Guitar</a></li>
+                    <li><a class="dropdown-item" href="{% url 'content:create_pickup' %}">Pickup</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
     <table class="table table-striped table-dark">
         <thead>
             <tr>
@@ -18,8 +36,8 @@ Hello dude!
         <tbody>
             {% for guitar in guitars %}
             <tr>
-                <th scope="row"><a href="{% url 'guitars:brand_detail' %}?brand={{ guitar.brand }}">{{ guitar.brand }}</a></th>
-                <th scope="row"><a href="{% url 'guitars:guitar_detail' %}?brand={{ guitar.brand}}&model_name={{ guitar.model_name }}">{{ guitar.model_name }}</a></th>
+                <th scope="row"><a href="{% url 'content:brand_detail' %}?brand={{ guitar.brand }}">{{ guitar.brand }}</a></th>
+                <th scope="row"><a href="{% url 'content:guitar_detail' %}?brand={{ guitar.brand}}&model_name={{ guitar.model_name }}">{{ guitar.model_name }}</a></th>
             </tr>
             {% endfor %}
         </tbody>

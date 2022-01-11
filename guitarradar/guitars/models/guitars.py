@@ -104,8 +104,11 @@ class Guitar(GuitarBaseModel):
         validators=[MaxValueValidator(5), MinValueValidator(1)]
     )
 
-    class Meta:
+    class Meta(GuitarBaseModel.Meta):
+        abstract = False
         unique_together = ['brand', 'model_name']
+        get_latest_by = 'created'
+        ordering = ['brand', 'model_name']
 
     def __str__(self) -> str:
         return f'{self.brand} {self.model_name}'
