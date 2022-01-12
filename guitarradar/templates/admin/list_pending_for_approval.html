@@ -1,0 +1,94 @@
+{% extends 'main.html' %}
+
+{% load i18n %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-12">
+        <h3>{% translate 'Pending for approval content' %}</h3>
+    </div>
+</div>
+
+<div class="accordion accordion-flush" id="pendingForApprovalAccordion">
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingOne">
+            <button class="accordion-button collapsed" type="button" {% if not brands %}disabled="" style="color:grey;"{% endif %}
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseOne" aria-expanded="false"
+                    aria-controls="flush-collapseOne">
+                {% translate 'Brands' %}
+            </button>
+        </h2>
+        <div id="flush-collapseOne" class="accordion-collapse collapse"
+             aria-labelledby="flush-headingOne"
+             data-bs-parent="#pendingForApprovalAccordion">
+            <div class="accordion-body">
+                {% for brand in brands %}
+                {{ brand }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingTwo">
+            <button class="accordion-button collapsed" type="button" {% if not bridges %}disabled="" style="color:grey;"{% endif %}
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseTwo" aria-expanded="false"
+                    aria-controls="flush-collapseTwo">
+                {% translate 'Bridges' %}
+            </button>
+        </h2>
+        <div id="flush-collapseTwo" class="accordion-collapse collapse"
+             aria-labelledby="flush-headingTwo"
+             data-bs-parent="#pendingForApprovalAccordion">
+            <div class="accordion-body">
+                {% for bridge in bridges %}
+                {{ bridge }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingThree">
+            <button class="accordion-button collapsed" type="button" {% if not guitars %}disabled="" style="color:grey;"{% endif %}
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseThree" aria-expanded="false"
+                    aria-controls="flush-collapseThree">
+                {% translate 'Guitars' %}
+            </button>
+        </h2>
+        <div id="flush-collapseThree" class="accordion-collapse collapse"
+             aria-labelledby="flush-headingThree"
+             data-bs-parent="#pendingForApprovalAccordion">
+            <div class="accordion-body">
+                {% for guitar in guitars %}
+                <a href="{% url 'adminpanel:check_for_approval_guitar' %}?brand={{ guitar.brand}}&model_name={{ guitar.model_name }}">
+                    {{ guitar }}
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    <div class="accordion-item">
+        <h2 class="accordion-header" id="flush-headingFour">
+            <button class="accordion-button collapsed" type="button" {% if not pickups %}disabled="" style="color:grey;"{% endif %}
+                    data-bs-toggle="collapse"
+                    data-bs-target="#flush-collapseFour" aria-expanded="false"
+                    aria-controls="flush-collapseFour">
+                {% translate 'Pickups' %}
+            </button>
+        </h2>
+        <div id="flush-collapseFour" class="accordion-collapse collapse"
+             aria-labelledby="flush-headingFour"
+             data-bs-parent="#pendingForApprovalAccordion">
+            <div class="accordion-body">
+                {% for pickup in pickups %}
+                {{ pickup }}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

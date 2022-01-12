@@ -6,10 +6,11 @@ from guitarradar.guitars.views import (
     CreateBridgeView,
     CreateGuitarView,
     guitar_detail,
+    CreatePickupView
 )
-from guitarradar.guitars.views.pickups import CreatePickupView
 
 urlpatterns = [
+
     path('brands/', brand_detail, name='brand_detail'),
     path('brands/create/', CreateBrandView.as_view(), name='create_brand'),
 

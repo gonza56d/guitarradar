@@ -17,7 +17,14 @@ class User(AbstractUser, BaseModel):
 
     USERNAME_FIELD = 'username'
     REQUIRED_FIELDS = ['email']
-    admin_level = models.CharField(max_length=2, choices=AdminLevels.choices, default='NA')
+    admin_level = models.CharField(
+        max_length=2, choices=AdminLevels.choices, default='NA'
+    )
+
+    @property
+    def is_admin(self) -> bool:
+        return str(self.admin_level) \
+               and self.admin_level != User.AdminLevels.NOT_ADMIN
 
     def __str__(self):
         return self.username

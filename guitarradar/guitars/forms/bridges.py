@@ -17,7 +17,7 @@ class CreateBridgeForm(forms.ModelForm):
         self.fields['brand'].widget = forms.Select(
             attrs={'class': 'form-control'},
             choices=(
-                (brand, brand.name)
+                (brand.id, brand.name)
                 for brand in Brand.objects.filter(approved=True)
             )
         )

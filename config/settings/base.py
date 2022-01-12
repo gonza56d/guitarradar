@@ -40,6 +40,7 @@ DJANGO_APPS = [
 ]
 
 PROJECT_APPS = [
+    'guitarradar.adminpanel.apps.AdminPanelConfig',
     'guitarradar.guitars.apps.GuitarsConfig',
     'guitarradar.index.apps.IndexConfig',
     'guitarradar.users.apps.UsersConfig',

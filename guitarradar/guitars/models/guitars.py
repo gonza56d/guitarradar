@@ -98,9 +98,13 @@ class Guitar(GuitarBaseModel):
     frets_type = models.CharField(max_length=3, choices=FretsTypes.choices)
     scale_length = models.FloatField(null=False)
     pricepoint_score = models.IntegerField(
+        null=True,
+        default=None,
         validators=[MaxValueValidator(5), MinValueValidator(1)]
     )
     overall_score = models.IntegerField(
+        null=True,
+        default=None,
         validators=[MaxValueValidator(5), MinValueValidator(1)]
     )
 

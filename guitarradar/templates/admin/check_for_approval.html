@@ -1,0 +1,27 @@
+{% extends 'main.html' %}
+
+{% load i18n %}
+
+
+{% block content %}
+
+<form class="col-12 col-md-4 offset-md-4 alert alert-dark"
+        method="POST" action="{% url url %}">{% csrf_token %}
+
+    <div class="row my-2 mx-2 text-center"><h4>{% translate 'Checking pending for approval' %} {{ kind }}</h4></div>
+
+    {% for field in form %}
+    <div class="row my-2 mx-2">
+        {{ field.label }}
+        {{ field }}
+    </div>
+    {% endfor %}
+
+    <div class="row my-2 mx-2 text-center">
+        <button class="btn btn-info my-2">{% translate 'Confirm changes and approve' %}</button>
+        <button class="btn btn-danger my-2">{% translate 'Reject and delete content' %}</button>
+    </div>
+
+</form>
+
+{% endblock %}
