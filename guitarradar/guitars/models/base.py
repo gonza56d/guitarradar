@@ -9,7 +9,9 @@ class GuitarBaseModel(BaseModel):
     """
 
     approved = models.BooleanField(default=False, null=False, blank=True)
-    brand = models.ForeignKey('guitars.Brand', on_delete=models.PROTECT, null=False)
+    brand = models.ForeignKey(
+        'guitars.Brand', on_delete=models.PROTECT, null=False
+    )
     model_name = models.CharField(max_length=300)
     origin = models.CharField(max_length=300)
     url = models.CharField(max_length=5000)

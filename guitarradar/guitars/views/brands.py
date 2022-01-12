@@ -28,7 +28,7 @@ class CreateBrandView(View):
             return render(
                 request,
                 'guitars/creation.html',
-                CreateBrandForm.context
+                CreateBrandView.context
             )
 
 

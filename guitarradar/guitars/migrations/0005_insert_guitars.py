@@ -16,6 +16,7 @@ def _insert_guitars(apps, schema_editor):
                 continue
             try:
                 guitar = Guitar(
+                    approved=True,
                     brand=Brand.objects.get(name=data[0]),
                     model_name=data[1],
                     url=data[2],

@@ -12,7 +12,7 @@ def _insert_brands(apps, schema_editor):
             if index == 0:
                 continue
             try:
-                brand = Brand(name=data[0], url=data[1])
+                brand = Brand(approved=True, name=data[0], url=data[1])
                 brand.save()
             except IntegrityError:
                 print(f'Brand {brand.name} already exists in database')

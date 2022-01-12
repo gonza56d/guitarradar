@@ -14,6 +14,7 @@ def _insert_bridges(apps, schema_editor):
                 continue
             try:
                 bridge = Bridge(
+                    approved=True,
                     brand=Brand.objects.get(name=data[0]),
                     model_name=data[1],
                     origin=data[2],
